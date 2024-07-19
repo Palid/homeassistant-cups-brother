@@ -1,4 +1,4 @@
-FROM ghcr.io/hassio-addons/debian-base:7.1.0
+FROM ghcr.io/hassio-addons/debian-base:7.4.0
 
 LABEL io.hass.version="1.0" io.hass.type="addon" io.hass.arch="aarch64|amd64"
 
@@ -6,31 +6,45 @@ LABEL io.hass.version="1.0" io.hass.type="addon" io.hass.arch="aarch64|amd64"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        sudo \
-        locales \
-        cups \
-        avahi-daemon \
-        libnss-mdns \
-        dbus \
-        colord \
-        printer-driver-all \
-        printer-driver-gutenprint \
-        openprinting-ppds \
-        hpijs-ppds \
-        hp-ppd  \
-        hplip \
-        printer-driver-foo2zjs \
-        cups-pdf \
-        gnupg2 \
-        lsb-release \
-        nano \
-        samba \
-        bash-completion \
-        procps \
-        whois \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
+  && apt-get install -y --no-install-recommends \
+  sudo \
+  locales \
+  cups \
+  avahi-daemon \
+  libnss-mdns \
+  dbus \
+  colord \
+  printer-driver-all \
+  printer-driver-gutenprint \
+  openprinting-ppds \
+  hpijs-ppds \
+  hp-ppd  \
+  hplip \
+  printer-driver-foo2zjs \
+  cups-pdf \
+  gnupg2 \
+  lsb-release \
+  samba \
+  bash-completion \
+  procps \
+  whois \
+  sudo \
+  whois \
+  usbutils \
+  cups \
+  cups-client \
+  cups-bsd \
+  cups-filters \
+  foomatic-db-compressed-ppds \
+  printer-driver-all \
+  openprinting-ppds \
+  hpijs-ppds \
+  hp-ppd \
+  hplip \
+  smbclient \
+  printer-driver-cups-pdf \
+  && apt-get clean -y \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY rootfs /
 
@@ -42,7 +56,7 @@ RUN useradd \
   --shell=/bin/bash \
   --password=$(mkpasswd print) \
   print \
-&& sed -i '/%sudo[[:space:]]/ s/ALL[[:space:]]*$/NOPASSWD:ALL/' /etc/sudoers
+  && sed -i '/%sudo[[:space:]]/ s/ALL[[:space:]]*$/NOPASSWD:ALL/' /etc/sudoers
 
 EXPOSE 631
 
