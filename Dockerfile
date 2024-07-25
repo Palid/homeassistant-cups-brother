@@ -1,6 +1,6 @@
-FROM ghcr.io/hassio-addons/debian-base:7.4.0
+FROM ghcr.io/hassio-addons/ubuntu-base:10.0.1
 
-LABEL io.hass.version="1.1" io.hass.type="addon" io.hass.arch="aarch64|amd64"
+LABEL io.hass.version="1.2" io.hass.type="addon" io.hass.arch="aarch64|amd64"
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -47,6 +47,8 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY rootfs /
+
+
 
 # Add user and disable sudo password checking
 RUN useradd \
