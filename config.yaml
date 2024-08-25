@@ -1,7 +1,7 @@
 name: CUPS
-version: "1.0"
-slug: cupsik
-description: A CUPS print server with working AirPrint
+version: "1.4"
+slug: cups-server
+description: A CUPS print server with working AirPrint. Supporting Brother printers.
 arch:
   - amd64
   - aarch64
